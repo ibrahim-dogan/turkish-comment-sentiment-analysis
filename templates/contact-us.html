@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Contact Us - Bank ABC</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="{% static 'css/smoothproducts.css' %}">
+</head>
+
+<body>
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" href="{% url 'index' %}">Bank ABC</a>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse"
+             id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link active" href="{% url 'index' %}">Apply for Loan</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="page contact-us-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Apply For Loan</h2>
+                <p>Fill the form below to loan application Bank ABC.</p>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Name Surname</label>
+                    <input required name="fullname" type="text" class="form-control"/></div>
+
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="form-check">
+                        <input required name="Gender" value="Male" type="radio" class="form-check-input"
+                               id="formCheck-1"/><label
+                            class="form-check-label" for="formCheck-1">Male</label></div>
+                    <div class="form-check">
+                        <input required name="Gender" value="Female" type="radio" class="form-check-input"
+                               id="formCheck-2"/><label
+                            class="form-check-label" for="formCheck-2">Female</label></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Married</label>
+                    <div class="form-check">
+                        <input required name="Married" value="Yes" type="radio" class="form-check-input"
+                               id="formCheck-3"/><label
+                            class="form-check-label" for="formCheck-3">Yes</label></div>
+                    <div class="form-check">
+                        <input required name="Married" value="No" type="radio" class="form-check-input"
+                               id="formCheck-4"/><label
+                            class="form-check-label" for="formCheck-4">No</label></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Dependents</label>
+                    <input required name="Dependents" type="number" min="0" value="0" max="3" class="form-control"/>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Education</label>
+                    <div class="form-check">
+                        <input name="Education" value="Graduate" required type="radio" class="form-check-input"
+                               id="formCheck-5"/><label
+                            class="form-check-label" for="formCheck-5">Graduated</label></div>
+                    <div class="form-check">
+                        <input name="Education" value="Not Graduate" type="radio" class="form-check-input"
+                               id="formCheck-6"/><label
+                            class="form-check-label" for="formCheck-6">Not Graduated</label></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Self_Employed</label>
+                    <div class="form-check">
+                        <input required name="Self_Employed" value="Yes" type="radio" class="form-check-input"
+                               id="formCheck-7"/><label
+                            class="form-check-label" for="formCheck-7">Yes</label></div>
+                    <div class="form-check">
+                        <input required name="Self_Employed" value="No" type="radio" class="form-check-input"
+                               id="formCheck-8"/><label
+                            class="form-check-label" for="formCheck-8">No</label></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>ApplicantIncome</label>
+                    <input name="ApplicantIncome" required type="number" class="form-control"/></div>
+
+
+                <div class="form-group">
+                    <label>CoapplicantIncome</label>
+                    <input name="CoapplicantIncome" required type="number" class="form-control"/>
+                </div>
+
+
+                <div class="form-group">
+                    <label>LoanAmount</label>
+                    <input type="number" name="LoanAmount" required class="form-control"/></div>
+
+
+                <div class="form-group">
+                    <label>Loan_Amount_Term</label>
+                    <input type="number" name="Loan_Amount_Term" required class="form-control"/></div>
+
+
+                <div class="form-group">
+                    <label>Credit_History</label>
+                    <div class="form-check">
+                        <input name="Credit_History" value="1" required type="radio" class="form-check-input"
+                               id="formCheck-9"/><label
+                            class="form-check-label" for="formCheck-9">Yes</label></div>
+                    <div class="form-check">
+                        <input name="Credit_History" value="0" required class="form-check-input" type="radio"
+                               id="formCheck-10"/><label
+                            class="form-check-label" for="formCheck-10">No</label></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Property_Area</label>
+                    <select name="Property_Area" required class="form-control">
+                        <option value="Urban" selected>Urban</option>
+                        <option value="Semiurban">Semiurban</option>
+                        <option value="Rural">Rural</option>
+                    </select>
+                </div>
+                <div
+                        class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Send</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script src="{% static 'js/smoothproducts.min.js' %}"></script>
+<script src="{% static 'js/theme.js' %}"></script>
+</body>
+
+</html>
