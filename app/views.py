@@ -1,6 +1,7 @@
 from django.shortcuts import render
-
 # Create your views here.
+from django.views.decorators.clickjacking import xframe_options_exempt
+
 from app.svm import predict_row
 
 
@@ -27,3 +28,12 @@ def index(request):
             return render(request, 'no.html')
 
     return render(request, 'contact-us.html')
+
+
+def codes(request):
+    return render(request, 'report.html')
+
+
+@xframe_options_exempt
+def ipynb(request):
+    return render(request, 'ipynb.html')

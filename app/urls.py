@@ -19,4 +19,6 @@ from app import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('codes', views.codes, name='codes'),
+    path('ipynb', views.ipynb, name='ipynb'),
 ]
