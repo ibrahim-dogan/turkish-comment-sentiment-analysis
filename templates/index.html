@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - PRO-CESSORS</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+</head>
+
+<body id="page-top">
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
+    <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top">PRO-CESSORS</a>
+        <button data-toggle="collapse" data-target="#navbarResponsive"
+                class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item mx-0 mx-lg-1" role="presentation">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'codes' %}">
+                        Talk is cheap show the code ➡️</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<header class="masthead bg-primary text-white text-center">
+    <div class="container">
+        <h1 style="padding: 10px;">&nbsp; &nbsp;Sentiment Analysis Tool&nbsp; &nbsp; for e-commerce</h1><i
+            class="fa fa-comments" style="width: 80px;height: 80px;font-size: 70px;padding: 10px;margin: 10px;"></i>
+        <h2 id="res" class="font-weight-light mb-0" style="padding: 30px;margin: 20px;">Select pre-trained model and
+            test it with
+            your comment!</h2>
+    </div>
+</header>
+<section id="contact">
+    <div class="container">
+        <h2 class="text-uppercase text-center text-secondary mb-0">How dıd you fınd our product?</h2><i
+            class="fa fa-arrow-down d-xl-flex justify-content-xl-center" data-aos="fade-down" data-aos-delay="150"
+            style="font-size: 60px;padding: 20px;color: rgb(44, 62, 80);"></i>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <form id="contactForm" method="post" action="{% url 'index' %}#res">
+                    {% csrf_token %}
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2"><small
+                                class="form-text text-danger help-block"></small></div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-2 pb-2 shadow-lg">
+                            <textarea
+                                    name="comment"
+                                    class="form-control d-xl-flex" id="message" required=""
+                                    placeholder="Harika bir ürün! Fevkaladenin fevkinde ..." rows="5"
+                                    style="background-color: rgba(24,188,156,0);filter: blur(0px) brightness(100%);padding: 10px 20px"
+                            >{{ comment_to_predict }}</textarea>
+
+                            {% if prediction %}
+                                <small class="form-text help-block border-top
+                                    {% if prediction.state == "positive" %}
+                                   border-success text-success
+                                    {% elif prediction.state == "negative" %}
+                                   border-danger text-danger
+                                   {% else %}
+                                   text-secondary
+                                   {% endif %}"
+                                       style="padding: 10px 20px;border-width: thin!important;">
+                                    Prediction: {{ prediction.state|upper }}
+                                    <span class="float-right text-secondary">Model: MLP Classifier</span>
+                                </small>
+                                {% else %}
+                                <small class="form-text help-block border-top"
+                                       style="padding: 10px 20px;border-width: thin!important;">
+                                    <span style="visibility: hidden">A</span>
+                                    <span class="float-right text-secondary">Model: MLP Classifier</span>
+                                </small>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div id="success"></div>
+                    <div class="form-group">
+                        <button class="btn btn-primary float-left btn-lg mt-2" id="sendMessageButton" type="submit">Predict
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Location</h4>
+                <p>2215 John Daniel Drive<br>Clark, MO 65243</p>
+            </div>
+            <div class="col-md-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase">Around the Web</h4>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a class="btn btn-outline-light btn-social text-center rounded-circle"
+                                                    role="button" href="#"><i class="fa fa-facebook fa-fw"></i></a></li>
+                    <li class="list-inline-item"><a class="btn btn-outline-light btn-social text-center rounded-circle"
+                                                    role="button" href="#"><i class="fa fa-google-plus fa-fw"></i></a>
+                    </li>
+                    <li class="list-inline-item"><a class="btn btn-outline-light btn-social text-center rounded-circle"
+                                                    role="button" href="#"><i class="fa fa-twitter fa-fw"></i></a></li>
+                    <li class="list-inline-item"><a class="btn btn-outline-light btn-social text-center rounded-circle"
+                                                    role="button" href="#"><i class="fa fa-dribbble fa-fw"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4 class="text-uppercase mb-4">About Freelancer</h4>
+                <p class="lead mb-0"><span>Freelance is a free to use, open source Bootstrap theme.&nbsp;</span></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="copyright py-4 text-center text-white">
+    <div class="container"><small>Copyright ©&nbsp;PRO-CESSORS 2020</small></div>
+</div>
+<div class="d-lg-none scroll-to-top position-fixed rounded"><a
+        class="d-block js-scroll-trigger text-center text-white rounded" href="#page-top"><i
+        class="fa fa-chevron-up"></i></a></div>
+<script src={% static 'js/jquery.min.js' %}></script>
+<script src={% static 'bootstrap/js/bootstrap.min.js' %}></script>
+<script src={% static 'js/bs-init.js' %}></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="{% static 'js/freelancer.js'%}"></script>
+</body>
+
+</html>
