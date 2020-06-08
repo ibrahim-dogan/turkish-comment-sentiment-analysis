@@ -2,4 +2,4 @@
 
 Turkish sentiment analysis based on Hepsiburada comments.
 
-Live demo: 
+Live demo: [https://turkish-sentiment.herokuapp.com/](https://turkish-sentiment.herokuapp.com/)
